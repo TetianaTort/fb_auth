@@ -1,6 +1,6 @@
 # fb_auth
 
-A new Flutter project.
+Firebase auth
 
 ## Getting Started
 
