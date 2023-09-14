@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "133185859842",
+    "project_id": "fbauth-97672",
+    "storage_bucket": "fbauth-97672.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:133185859842:android:580fee1a90cd08edf7121b",
+        "android_client_info": {
+          "package_name": "com.example.fb_auth"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWaT608rdZrwo_37O-3fScBizIRjtq32I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
