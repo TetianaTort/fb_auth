@@ -4,11 +4,13 @@ class AppMainButton extends StatelessWidget {
   final Color backgroundColor;
   final String? title;
   final String? imagePath;
+  final void Function()? onPressed;
   const AppMainButton({
     super.key,
     required this.backgroundColor,
     this.title,
     this.imagePath,
+    required this.onPressed,
   });
 
   @override
@@ -17,7 +19,7 @@ class AppMainButton extends StatelessWidget {
       width: double.infinity,
       height: 50,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: onPressed,
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all<Color>(backgroundColor),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(

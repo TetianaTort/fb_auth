@@ -1,10 +1,42 @@
+import 'dart:math';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../../global/widgets/app_main_button.dart';
 import '../../../global/widgets/app_textfield.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final emailController = TextEditingController();
+
+  final passwordController = TextEditingController();
+
+  void wrongEmailMessage(String error) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text(error),
+          );
+        });
+  }
+
+  void wrongPasswordMessage(String error) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text(error),
+          );
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,12 +51,14 @@ class LoginScreen extends StatelessWidget {
           child: Column(
             children: [
               const Icon(Icons.person, size: 135),
-              const AppTextField(
+              AppTextField(
+                controller: emailController,
                 hintText: 'Username',
                 obscureText: false,
               ),
               const SizedBox(height: 10),
-              const AppTextField(
+              AppTextField(
+                controller: passwordController,
                 hintText: 'Password',
                 obscureText: true,
               ),
@@ -43,9 +77,35 @@ class LoginScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 20),
-              const AppMainButton(
+              AppMainButton(
                 backgroundColor: Colors.black,
                 title: 'Login',
+                onPressed: () async {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return const Center(child: CircularProgressIndicator());
+                    },
+                  );
+                  try {
+                    await FirebaseAuth.instance.signInWithEmailAndPassword(
+                      email: emailController.text,
+                      password: passwordController.text,
+                    );
+                    Navigator.pop(context);
+                  } on FirebaseAuthException catch (e) {
+                    Navigator.pop(context);
+
+                    if (e.code == 'user-not-found') {
+                      wrongEmailMessage(e.message.toString());
+                    } else if (e.code == 'wrong-password') {
+                      // todo not working normaly  Navigator.pop(context);
+                      Navigator.pop(context);
+
+                      wrongPasswordMessage(e.message.toString());
+                    }
+                  }
+                },
               ),
               const SizedBox(height: 20),
               const Row(
@@ -56,8 +116,10 @@ class LoginScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 20),
-              AppMainButton(
-                  backgroundColor: Colors.grey[200]!, imagePath: 'lib/global/images/social.png'),
+              // AppMainButton(
+              //   backgroundColor: Colors.grey[200]!,
+              //   imagePath: 'lib/global/images/social.png',
+              // ),
             ],
           ),
         ),
