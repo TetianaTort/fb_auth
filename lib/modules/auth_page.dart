@@ -1,4 +1,4 @@
-import 'package:fb_auth/modules/auth/view/login_screen.dart';
+import 'package:fb_auth/modules/auth/login_screen.dart';
 import 'package:fb_auth/modules/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
