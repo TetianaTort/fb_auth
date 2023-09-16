@@ -1,4 +1,4 @@
-import 'package:fb_auth/modules/auth/view/login_screen.dart';
+import 'package:fb_auth/modules/auth_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const LoginScreen(),
+      home: const AuthPage(),
     );
   }
 }

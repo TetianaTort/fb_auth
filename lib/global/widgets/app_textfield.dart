@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class AppTextField extends StatelessWidget {
-  // final controller;
+  final controller;
   final String hintText;
   final bool obscureText;
 
   const AppTextField({
     super.key,
-    // required this.controller,
+    required this.controller,
     required this.hintText,
     required this.obscureText,
   });
@@ -15,7 +15,7 @@ class AppTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      // controller: controller,
+      controller: controller,
       obscureText: obscureText,
       decoration: InputDecoration(
           enabledBorder: const OutlineInputBorder(
